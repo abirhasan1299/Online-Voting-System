@@ -1,0 +1,42 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Election;
+use Illuminate\Http\Request;
+
+class ElectionController extends Controller
+{
+    public function Home()
+    {
+
+        return view("portal.home");
+    }
+    public function ElectionMaker()
+    {
+        return view('portal.ElectionMaker');
+    }
+    public function Election()
+    {
+        $elections = Election::orderBy('id',"DESC")->get();
+        return view('portal.election',compact('elections'));
+    }
+    public function createElection(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|max:200|min:5',
+            'description' => 'required|max:10000',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date'
+        ]);
+
+        $election = new Election();
+        $election->title = $request->title;
+        $election->description = $request->description;
+        $election->start_date = $request->start_date;
+        $election->end_date = $request->end_date;
+        $election->save();
+
+        return redirect()->route('election.home')->with('success', 'Election created successfully');
+    }
+}
