@@ -45,6 +45,11 @@
             @endforeach
             </tbody>
         </table>
+        <div class="d-flex justify-content-center">
+            <div class="mt-4">
+                {{$data->links()}}
+            </div>
+        </div>
     </div>
 </div>
 @endsection

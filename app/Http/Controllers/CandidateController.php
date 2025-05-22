@@ -13,7 +13,7 @@ class CandidateController extends Controller
      */
     public function index()
     {
-        $data = Candidate::orderBy('id', 'DESC')->get();
+        $data = Candidate::orderBy('id', 'DESC')->paginate(10);
         return view('portal.candidate',compact('data'));
     }
 

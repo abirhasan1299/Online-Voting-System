@@ -16,14 +16,13 @@ class ElectionFactory extends Factory
      */
     public function definition(): array
     {
-        $title = $this->faker()->sentence(4);
 
         return [
-            'title'=>$title,
-            'description'=>$this->faker()->paragraph,
-            'status'=>$this->faker->randomElement(['pending','published','running']),
-            'start_date'=>now()->addDays(rand(1,5)),
-            'end_date'=>now()->addDays(rand(6,10)
+            'title' => $this->faker->sentence(4),
+            'description' => $this->faker->paragraph,
+            'status' => $this->faker->randomElement(['pending', 'published', 'running']),
+            'start_date' => now()->addDays(rand(1, 5)),
+            'end_date' => now()->addDays(rand(6, 10)),
         ];
     }
 }

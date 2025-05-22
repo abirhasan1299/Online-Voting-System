@@ -33,7 +33,18 @@
                         <td>{{$election->title}}</td>
                         <td>{{$election->start_date->diffForHumans()}}</td>
                         <td>{{$election->end_date->diffForHumans()}}</td>
-                        <td><span class="badge rounded-pill text-bg-success">{{$election->status}}</span></td>
+                        <td><span class="badge rounded-pill text-bg-@php
+                        if($election->status=="pending")
+                            {
+                                echo "danger";
+                            }elseif ($election->status=="running")
+                            {
+                                echo "warning";
+                            }else{
+                            echo "success";
+                            }
+
+                        @endphp">{{$election->status}}</span></td>
                         <td>
                             <a href="#" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
                             <a href="#" class="btn btn-warning"><i class="bi bi-eye"></i></a>
@@ -43,6 +54,11 @@
                 @endforeach
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center mt-4">
+                <div>
+                    {{$elections->links()}}
+                </div>
+            </div>
         </div>
     </div>
 @endsection

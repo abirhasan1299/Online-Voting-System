@@ -28,7 +28,7 @@ class ElectionController extends Controller
     }
     public function Election()
     {
-        $elections = Election::orderBy('id',"DESC")->get();
+        $elections = Election::orderBy('id',"DESC")->paginate(10);
         return view('portal.election',compact('elections'));
     }
     public function createElection(Request $request)

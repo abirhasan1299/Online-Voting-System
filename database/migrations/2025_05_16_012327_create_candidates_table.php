@@ -18,7 +18,7 @@ return new class extends Migration
                 ->onDelete('cascade') ;
             $table->string("name");
             $table->string("photo");
-            $table->string("description");
+            $table->string("description",4000);
             $table->timestamps();
         });
     }
