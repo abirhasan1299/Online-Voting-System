@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Vinkla\Hashids\Facades\Hashids;
 use App\Models\Election;
+use App\Models\Vote;
+use App\Models\Candidate;
 use Illuminate\Http\Request;
 
 class ElectionController extends Controller
@@ -11,6 +13,14 @@ class ElectionController extends Controller
     {
 
         return view("portal.home");
+    }
+    public function ElectionResult($id)
+    {
+        $decode = Hashids::decode($id);
+        if(empty($decode)) abort(404);
+        $candidates = Candidate::where('election_id',$decode[0])->withCount('vote')->get();
+
+        return view('user.result',compact('candidates'));
     }
     public function ElectionMaker()
     {

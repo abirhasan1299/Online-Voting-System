@@ -43,5 +43,6 @@ Route::middleware([ValidUser::class])->group(function(){
     Route::get('user',[UserController::class,'Home'])->name('user.home');
     Route::get('user/election/{id}',[UserController::class,'ElectionDetails'])->name('election.details');
     Route::post('vote-taken',[UserController::class,'VoteTaken'])->name('user.vote-taken');
+    Route::get('user/result/{id}',[ElectionController::class,'ElectionResult'])->name('user.result');
 });
 

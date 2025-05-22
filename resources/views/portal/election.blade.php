@@ -1,5 +1,5 @@
 @extends('master.admin')
-@section("title","Admin|Election")
+@section("title","Admin | Election")
 @section("content")
     <div class="container mt-5">
         @if (session('success'))
@@ -20,6 +20,7 @@
                     <th>Title</th>
                     <th>Start</th>
                     <th>End</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
                 <tbody>
@@ -32,6 +33,7 @@
                         <td>{{$election->title}}</td>
                         <td>{{$election->start_date->diffForHumans()}}</td>
                         <td>{{$election->end_date->diffForHumans()}}</td>
+                        <td><span class="badge rounded-pill text-bg-success">{{$election->status}}</span></td>
                         <td>
                             <a href="#" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
                             <a href="#" class="btn btn-warning"><i class="bi bi-eye"></i></a>

@@ -34,7 +34,14 @@
                                     <a href="{{route('election.details',[Hashids::encode($item->id)])}}" class="btn btn-primary btn-sm">View</a>
                                 </div>
                                 <div>
-                                    <i class="bi bi-hourglass-split" style="color:rgba(255,38,0,0.75);">  End: </i>  {{$item->end_date->diffForHumans()}}
+                                    <a href="{{route("user.result",[Hashids::encode($item->id)])}}" class="btn btn-success btn-sm">Result</a>
+                                </div>
+                                <div>
+
+                                    <span class="badge rounded-pill text-bg-danger">
+                                        <i class="bi bi-hourglass-split"></i>  {{$item->end_date->diffForHumans()}}
+                                    </span>
+
                                 </div>
                             </div>
                         </div>
