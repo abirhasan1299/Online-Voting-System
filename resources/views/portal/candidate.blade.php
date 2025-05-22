@@ -36,9 +36,15 @@
                     </td>
                     <td>{{$val->election->title}}</td>
                     <td>
-                        <a href="#" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
-                        <a href="#" class="btn btn-warning"><i class="bi bi-eye"></i></a>
-                        <a href="#" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                        <div class="d-flex justify-content-around">
+                            <a href="{{route('candidates.edit',[Hashids::encode($val->id)])}}" class="btn btn-sm btn-success"><i class="bi bi-pencil-square"></i></a>
+
+                            <form action="{{route('candidates.destroy',[Hashids::encode($val->id)])}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
 

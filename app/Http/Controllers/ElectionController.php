@@ -31,6 +31,46 @@ class ElectionController extends Controller
         $elections = Election::orderBy('id',"DESC")->paginate(10);
         return view('portal.election',compact('elections'));
     }
+    public function ElectionEdit($id)
+    {
+        $decode = Hashids::decode($id);
+        if(empty($decode)) abort(404);
+        $data = Election::findOrFail($decode[0]);
+
+        return view('portal.editElection',compact('data'));
+    }
+    public function Edit(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|max:200|min:5',
+            'description' => 'required|max:10000',
+            'status'=>'required',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date'
+        ]);
+
+        $election = Election::findOrFail($request->id);
+        $election->update([
+            'title'=>$request->title,
+            'description' =>$request->description,
+            'status'=>$request->status,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date
+        ]);
+        $election->save();
+        return redirect()->route("election.home");
+
+    }
+    public function ElectionDelete($id)
+    {
+        $decode = Hashids::decode($id);
+        if(empty($decode)) abort(404);
+
+        $election = Election::findOrFail($decode[0]);
+        $election->delete();
+        return redirect()->route("election.home");
+    }
+
     public function createElection(Request $request)
     {
         $request->validate([

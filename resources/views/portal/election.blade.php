@@ -33,7 +33,7 @@
                         <td>{{$election->title}}</td>
                         <td>{{$election->start_date->diffForHumans()}}</td>
                         <td>{{$election->end_date->diffForHumans()}}</td>
-                        <td><span class="badge rounded-pill text-bg-@php
+                        <td><span class="badge badge-sm rounded-pill text-bg-@php
                         if($election->status=="pending")
                             {
                                 echo "danger";
@@ -44,11 +44,11 @@
                             echo "success";
                             }
 
-                        @endphp">{{$election->status}}</span></td>
+                        @endphp">{{ucfirst($election->status)}}</span></td>
                         <td>
-                            <a href="#" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
-                            <a href="#" class="btn btn-warning"><i class="bi bi-eye"></i></a>
-                            <a href="#" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                            <a href="{{route('election.editView',[Hashids::encode($election->id)])}}" class="btn btn-sm btn-success"><i class="bi bi-pencil-square"></i></a>
+
+                            <a href="{{route('election.delete',[Hashids::encode($election->id)])}}" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></a>
                         </td>
                     </tr>
                 @endforeach

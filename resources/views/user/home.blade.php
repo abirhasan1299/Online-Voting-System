@@ -30,19 +30,24 @@
                                 <p class="card-text" style="color:grey;">{{ Str::limit($item->description, 100) }}</p>
                             </div>
                             <div class="card-footer d-flex justify-content-between bg-white border-0">
-                                <div>
-                                    <a href="{{route('election.details',[Hashids::encode($item->id)])}}" class="btn btn-primary btn-sm">View</a>
-                                </div>
-                                <div>
-                                    <a href="{{route("user.result",[Hashids::encode($item->id)])}}" class="btn btn-success btn-sm">Result</a>
-                                </div>
-                                <div>
+                                @if($item->status=='running')
+                                    <div>
+                                        <a href="{{route('election.details',[Hashids::encode($item->id)])}}" class="btn btn-primary btn-sm">View</a>
+                                    </div>
+                                    <div>
 
                                     <span class="badge rounded-pill text-bg-danger">
                                         <i class="bi bi-hourglass-split"></i>  {{$item->end_date->diffForHumans()}}
                                     </span>
 
-                                </div>
+                                    </div>
+                                @endif
+                                @if($item->status=='published')
+                                    <div>
+                                        <a href="{{route("user.result",[Hashids::encode($item->id)])}}" class="btn btn-success btn-sm">Result</a>
+                                    </div>
+                                @endif
+
                             </div>
                         </div>
                     </div>

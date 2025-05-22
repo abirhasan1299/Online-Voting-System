@@ -31,18 +31,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="bi bi-activity"> </i> My Activity</a>
-                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-gear"></i> Settings
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i> Profile</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-arrow-repeat"></i> Change Password</a></li>
-
+                        <li><a class="dropdown-item" href="{{route('user.profile')}}"><i class="bi bi-person-circle"></i> Profile</a></li>
                     </ul>
                 </li>
 

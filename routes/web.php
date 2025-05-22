@@ -34,6 +34,9 @@ Route::get('portal',[ElectionController::class,'Home'])->name('portal.home');
 Route::get("portal/new-election",[ElectionController::class,'ElectionMaker'])->name('new-election');
 Route::post('portal/save-election',[ElectionController::class,'createElection'])->name('save-election');
 Route::get('portal/election',[ElectionController::class,'Election'])->name('election.home');
+Route::get('portal/election/edit/{id}',[ElectionController::class,'ElectionEdit'])->name('election.editView');
+Route::post('portal/election/save-edit/',[ElectionController::class,'Edit'])->name('election.save-edit');
+Route::get('portal/election/delete/{id}',[ElectionController::class,'ElectionDelete'])->name('election.delete');
 
 //===========================Portal (Candidate)============================
 Route::resource('candidates',CandidateController::class);
@@ -41,6 +44,9 @@ Route::resource('candidates',CandidateController::class);
 //===========================User Routing===================================
 Route::middleware([ValidUser::class])->group(function(){
     Route::get('user',[UserController::class,'Home'])->name('user.home');
+    Route::get('user/edit/profile',[UserController::class,'ProfileEdit'])->name('user.profile-edit');
+    Route::post('user/update/profile',[UserController::class,'ProfileUpdate'])->name('user.profile-updated');
+    Route::get('user/profile',[UserController::class,'Profile'])->name('user.profile');
     Route::get('user/election/{id}',[UserController::class,'ElectionDetails'])->name('election.details');
     Route::post('vote-taken',[UserController::class,'VoteTaken'])->name('user.vote-taken');
     Route::get('user/result/{id}',[ElectionController::class,'ElectionResult'])->name('user.result');
